@@ -274,15 +274,21 @@ function Contact() {
           <p className="mt-8 max-w-md text-lg leading-relaxed text-muted">
             Tell us what you need and when you need it. We reply within a day with next steps.
           </p>
-          <Magnetic className="mt-10">
-            <a
-              href={`mailto:${site.email}`}
-              data-cursor="Email"
-              className="block bg-accent px-6 py-4 font-mono text-sm uppercase tracking-wider text-bg transition-opacity hover:opacity-85"
-            >
-              {site.email} →
-            </a>
-          </Magnetic>
+          <div className="mt-10 flex flex-col items-start gap-4">
+            {site.emails.map((email, i) => (
+              <Magnetic key={email}>
+                <a
+                  href={`mailto:${email}`}
+                  data-cursor="Email"
+                  className={`block break-all px-6 py-4 font-mono text-sm uppercase tracking-wider transition-opacity hover:opacity-85 ${
+                    i === 0 ? "bg-accent text-bg" : "border border-accent text-accent"
+                  }`}
+                >
+                  {email} →
+                </a>
+              </Magnetic>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

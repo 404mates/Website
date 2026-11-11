@@ -177,9 +177,17 @@ async function CaseStudy({ params }: Props) {
       <footer data-c="Footer" className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 font-mono text-xs text-muted sm:flex-row sm:justify-between sm:px-6">
           <p>© {site.name}</p>
-          <a className="transition-colors hover:text-accent" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>
+          <p className="flex flex-col gap-1 sm:flex-row sm:gap-6">
+            {site.emails.map((email) => (
+              <a
+                key={email}
+                className="transition-colors hover:text-accent"
+                href={`mailto:${email}`}
+              >
+                {email}
+              </a>
+            ))}
+          </p>
         </div>
       </footer>
       <XRay />

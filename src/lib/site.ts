@@ -5,6 +5,7 @@ export const site = {
   tagline: "Web studio",
   origin: "Penn State",
   email: "sameersajid3818@gmail.com",
+  emails: ["sameersajid3818@gmail.com", "shp52461@gmail.com"],
 };
 
 export type Project = {
