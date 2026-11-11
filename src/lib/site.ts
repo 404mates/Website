@@ -4,8 +4,8 @@ export const site = {
   name: "404bro",
   tagline: "Web studio",
   origin: "Penn State",
-  email: "sameersajid3818@gmail.com",
-  emails: ["sameersajid3818@gmail.com", "shp52461@gmail.com"],
+  email: "404mates@gmail.com",
+  emails: ["404mates@gmail.com"],
 };
 
 export type Project = {
