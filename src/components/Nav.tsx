@@ -7,7 +7,6 @@ import { site } from "@/lib/site";
 const links = [
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
-  { href: "/#team", label: "Team" },
   { href: "/#contact", label: "Start a project" },
 ];
 
@@ -40,7 +39,7 @@ export default function Nav() {
           </Link>
 
           <ul className="hidden items-center gap-8 font-mono text-xs uppercase tracking-wider text-muted sm:flex">
-            {links.slice(0, 3).map((l) => (
+            {links.slice(0, 2).map((l) => (
               <li key={l.href}>
                 <Link className="transition-colors hover:text-fg" href={l.href}>
                   {l.label}

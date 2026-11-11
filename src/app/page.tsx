@@ -9,7 +9,7 @@ import Magnetic from "@/components/Magnetic";
 import Tilt from "@/components/Tilt";
 import Scramble from "@/components/Scramble";
 import ScrollWords from "@/components/ScrollWords";
-import { capabilities, process, projects, site, team } from "@/lib/site";
+import { capabilities, process, projects, site } from "@/lib/site";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
@@ -208,48 +208,13 @@ function Process() {
   );
 }
 
-function Team() {
-  return (
-    <section id="team" data-c="Team" className="border-b border-line py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead
-          index="03"
-          label="The team"
-          title="Four people. You talk to the ones writing the code."
-        />
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {team.map((m, i) => (
-            <li key={m.role}>
-              <Reveal delay={i * 90}>
-                <div
-                  data-c="TeamCard"
-                  className="flex aspect-[4/5] flex-col justify-between border border-line bg-raised p-5"
-                >
-                  <span className="font-mono text-xs text-muted">
-                    0{i + 1}
-                    <span className="text-accent">.</span>
-                  </span>
-                  <div>
-                    <p className="text-lg font-medium tracking-tight">{m.role}</p>
-                    <p className="label mt-1">{m.focus}</p>
-                  </div>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
   return (
     <section id="contact" data-c="Contact" className="py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <p className="label">
-            <span className="text-accent">04</span> — Start a project
+            <span className="text-accent">03</span> — Start a project
           </p>
           <h2 className="grow-in mt-6 text-[clamp(2.4rem,7vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.04em]">
             Have something
@@ -301,7 +266,6 @@ export default function Home() {
         <Work />
         <Statement />
         <Process />
-        <Team />
         <Contact />
       </main>
       <Footer />

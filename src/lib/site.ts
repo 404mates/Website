@@ -139,14 +139,6 @@ export const projects: Project[] = [
   },
 ];
 
-// The four seats on the team. Names are intentionally left off.
-export const team = [
-  { role: "Frontend & motion", focus: "Interfaces, animation, WebGL" },
-  { role: "Backend & data", focus: "APIs, databases, integrations" },
-  { role: "Design & brand", focus: "Identity, layout, type" },
-  { role: "Product & clients", focus: "Scoping, delivery, support" },
-];
-
 export const capabilities = [
   "Brand & marketing sites",
   "Web apps & dashboards",
