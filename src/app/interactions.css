@@ -1,0 +1,135 @@
+/* ---------- Pointer-following cursor ring ---------- */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cursor-ring[data-on] {
+  opacity: 1;
+}
+.cursor-ring::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid color-mix(in srgb, var(--fg) 55%, transparent);
+  border-radius: 999px;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    background-color 0.25s,
+    border-color 0.25s;
+}
+.cursor-ring[data-mode="link"]::before {
+  transform: scale(1.7);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.cursor-ring[data-mode="label"]::before {
+  transform: scale(2.9);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.cursor-ring span {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #08090a;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.cursor-ring[data-mode="label"] span {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- 3D tilt card ---------- */
+.tilt-scene {
+  perspective: 1100px;
+}
+.tilt {
+  position: relative;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.tilt[data-active] {
+  transition: transform 0.12s ease-out;
+}
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 22%, transparent),
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+  transition: opacity 0.4s;
+}
+.tilt[data-active] .tilt-glare {
+  opacity: 1;
+}
+
+/* ---------- Scroll progress line ---------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  @keyframes grow-x {
+    to {
+      transform: scaleX(1);
+    }
+  }
+  .scroll-progress {
+    animation: grow-x linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* ---------- Headline lines slide up out of a mask ---------- */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+@keyframes mask-up {
+  from {
+    transform: translateY(105%) rotate(4deg);
+  }
+}
+.mask > span {
+  display: block;
+  transform-origin: 0 100%;
+  animation: mask-up 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt {
+    transform: none;
+  }
+  .mask > span {
+    animation: none;
+  }
+}
