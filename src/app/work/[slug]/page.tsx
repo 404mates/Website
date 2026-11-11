@@ -103,7 +103,7 @@ async function CaseStudy({ params }: Props) {
 
         <section data-c="Screenshot" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <Reveal>
-            <figure className="overflow-hidden border border-line bg-raised">
+            <figure className="unclip overflow-hidden border border-line bg-raised">
               <div className="flex items-center gap-2 border-b border-line px-4 py-3">
                 <span className="h-2.5 w-2.5 rounded-full bg-line" />
                 <span className="h-2.5 w-2.5 rounded-full bg-line" />
@@ -113,8 +113,8 @@ async function CaseStudy({ params }: Props) {
               <Image
                 src={project.image}
                 alt={project.imageAlt}
-                width={800}
-                height={500}
+                width={1600}
+                height={1000}
                 priority
                 sizes="(min-width: 1152px) 1104px, 100vw"
                 className="h-auto w-full"

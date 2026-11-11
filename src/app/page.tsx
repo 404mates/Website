@@ -1,13 +1,15 @@
 import type { CSSProperties } from "react";
 import ShaderHero from "@/components/ShaderHero";
 import XRay from "@/components/XRay";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Nav from "@/components/Nav";
 import Magnetic from "@/components/Magnetic";
 import Tilt from "@/components/Tilt";
 import Scramble from "@/components/Scramble";
-import { capabilities, process, projects, site, team, type Project } from "@/lib/site";
+import ScrollWords from "@/components/ScrollWords";
+import { capabilities, process, projects, site, team } from "@/lib/site";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
@@ -19,7 +21,7 @@ function Hero() {
       className="relative flex min-h-svh flex-col justify-end overflow-hidden border-b border-line"
     >
       <ShaderHero />
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-14 pt-32 sm:px-6 sm:pb-20">
+      <div className="hero-exit relative mx-auto w-full max-w-6xl px-4 pb-14 pt-32 sm:px-6 sm:pb-20">
         <p className="label rise" style={d(100)}>
           <span className="text-accent">●</span> {site.tagline} · four engineers out of{" "}
           {site.origin}
@@ -80,12 +82,14 @@ function Marquee() {
       aria-hidden
       className="overflow-hidden border-b border-line py-5"
     >
+      <div className="lean">
       <div className="marquee-track flex w-max gap-10 pr-10 font-mono text-xs uppercase tracking-widest text-muted">
         {items.map((c, i) => (
           <span key={i} className="flex items-center gap-10 whitespace-nowrap">
             {c} <span className="text-accent">/</span>
           </span>
         ))}
+      </div>
       </div>
     </div>
   );
@@ -100,47 +104,8 @@ function SectionHead({ index, label, title }: { index: string; label: string; ti
       <h2 className="mt-4 max-w-2xl text-3xl font-medium leading-tight tracking-[-0.03em] sm:text-5xl">
         {title}
       </h2>
+      <div aria-hidden className="draw-line mt-8 h-px bg-accent/50" />
     </Reveal>
-  );
-}
-
-// A typographic poster for each project, echoing the client's own brand.
-function Poster({ project }: { project: Project }) {
-  if (project.theme === "editorial") {
-    return (
-      <div className="flex h-full flex-col justify-between bg-[#f3ece4] p-6 text-[#2a1f1a] sm:p-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em]">
-          Makeup / Hair / Beauty
-        </p>
-        <p className="font-serif text-4xl leading-[0.95] sm:text-6xl">
-          More than
-          <br />
-          just makeup,
-          <br />
-          <em>it&rsquo;s a mood.</em>
-        </p>
-      </div>
-    );
-  }
-  return (
-    <div className="flex h-full flex-col justify-between bg-[#eef4f1] p-6 text-[#12332b] sm:p-8">
-      <p className="w-fit rounded-full bg-[#12332b] px-3 py-1 text-[10px] font-medium text-[#eef4f1]">
-        Active aging, not caregiving
-      </p>
-      <div>
-        <p className="max-w-sm text-2xl font-semibold leading-tight tracking-tight sm:text-4xl">
-          Trusted companions for older adults.
-        </p>
-        <div className="mt-5 flex gap-2 text-[11px] font-medium">
-          <span className="rounded-full bg-[#12332b] px-3 py-1.5 text-[#eef4f1]">
-            Find a companion
-          </span>
-          <span className="rounded-full border border-[#12332b]/30 px-3 py-1.5">
-            Become a helper
-          </span>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -163,10 +128,14 @@ function Work() {
                 data-cursor="View"
                 className="group block border border-line bg-raised transition-colors hover:border-accent/60"
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <div className="h-full transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-                    <Poster project={p} />
-                  </div>
+                <div className="unclip relative aspect-[16/10] overflow-hidden bg-line">
+                  <Image
+                    src={p.image}
+                    alt={p.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 560px, 100vw"
+                    className="parallax object-cover object-top"
+                  />
                 </div>
                 <div className="p-6 sm:p-8">
                   <div className="flex items-baseline justify-between gap-4">
@@ -193,6 +162,22 @@ function Work() {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Statement() {
+  return (
+    <section data-c="Statement" className="border-b border-line py-28 sm:py-44">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="label mb-8">
+          <span className="text-accent">●</span> What we care about
+        </p>
+        <ScrollWords
+          className="max-w-5xl text-[clamp(1.75rem,4.6vw,4rem)] font-medium leading-[1.1] tracking-[-0.03em]"
+          text="Anyone can make a page look good in a screenshot. We care about the parts you only notice when they are missing: speed, accessibility, clean code, and a site that still works in five years."
+        />
       </div>
     </section>
   );
@@ -266,7 +251,7 @@ function Contact() {
           <p className="label">
             <span className="text-accent">04</span> — Start a project
           </p>
-          <h2 className="mt-6 text-[clamp(2.4rem,7vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.04em]">
+          <h2 className="grow-in mt-6 text-[clamp(2.4rem,7vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.04em]">
             Have something
             <br />
             worth <em className="font-serif font-normal text-accent">building?</em>
@@ -314,6 +299,7 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Work />
+        <Statement />
         <Process />
         <Team />
         <Contact />

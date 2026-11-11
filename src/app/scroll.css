@@ -1,0 +1,127 @@
+/* ---------- Mobile menu ---------- */
+.mobile-menu {
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 0.6s cubic-bezier(0.7, 0, 0.2, 1),
+    visibility 0s 0.6s;
+}
+.mobile-menu[data-open] {
+  clip-path: inset(0);
+  visibility: visible;
+  transition:
+    clip-path 0.6s cubic-bezier(0.7, 0, 0.2, 1),
+    visibility 0s;
+}
+.mobile-menu-link {
+  transform: translateY(110%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.mobile-menu[data-open] .mobile-menu-link {
+  transform: none;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(180ms + var(--i) * 70ms);
+}
+.mobile-menu-foot {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.mobile-menu[data-open] .mobile-menu-foot {
+  opacity: 1;
+  transition: opacity 0.6s 0.55s;
+}
+html[data-menu-open] {
+  overflow: hidden;
+}
+
+/* ---------- Scroll-driven motion ----------
+   Tied directly to scroll position where the browser supports it; elsewhere
+   the elements simply sit in their final state. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Hero content drifts up and fades as the hero leaves the screen */
+    @keyframes hero-exit {
+      to {
+        opacity: 0;
+        transform: translateY(-90px) scale(0.97);
+      }
+    }
+    .hero-exit {
+      animation: hero-exit linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 75%;
+    }
+
+    /* Screenshots move slower than the card that frames them */
+    @keyframes parallax {
+      from {
+        transform: translateY(-7%) scale(1.16);
+      }
+      to {
+        transform: translateY(7%) scale(1.16);
+      }
+    }
+    .parallax {
+      animation: parallax linear both;
+      animation-timeline: view();
+    }
+
+    /* Cards and screenshots open from a clipped strip */
+    @keyframes unclip {
+      from {
+        clip-path: inset(14% 6% 14% 6%);
+        opacity: 0.4;
+      }
+      to {
+        clip-path: inset(0);
+        opacity: 1;
+      }
+    }
+    .unclip {
+      animation: unclip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 32%;
+    }
+
+    /* Rules draw themselves in from the left */
+    @keyframes draw {
+      from {
+        transform: scaleX(0);
+      }
+    }
+    .draw-line {
+      transform-origin: 0 50%;
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+
+    /* Closing headline grows into place */
+    @keyframes grow-in {
+      from {
+        transform: scale(0.82);
+        opacity: 0.2;
+      }
+    }
+    .grow-in {
+      transform-origin: 0 100%;
+      animation: grow-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 38%;
+    }
+
+    /* Marquee leans with the scroll */
+    @keyframes lean {
+      from {
+        transform: translateX(6%);
+      }
+      to {
+        transform: translateX(-6%);
+      }
+    }
+    .lean {
+      animation: lean linear both;
+      animation-timeline: view();
+    }
+  }
+}

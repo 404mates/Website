@@ -37,7 +37,7 @@ export const projects: Project[] = [
     tags: ["Editorial design", "Service menu", "Inquiry flow"],
     theme: "editorial",
     image: "/work/leena-studio-nyc.jpg",
-    imageAlt: "Leena's Studio NYC opening screen with the studio monogram and a loading counter",
+    imageAlt: "Leena's Studio NYC homepage with the studio wordmark, menu and booking link",
     facts: [
       { label: "Stack", value: "React + Vite" },
       { label: "Hosting", value: "Vercel" },
