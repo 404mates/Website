@@ -116,9 +116,9 @@ function Work() {
         <SectionHead
           index="01"
           label="Selected work"
-          title="Two clients, two very different sites. Same standard underneath."
+          title="Three launches, three very different sites. Same standard underneath."
         />
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 120}>
               <Tilt>
@@ -133,7 +133,7 @@ function Work() {
                     src={p.image}
                     alt={p.imageAlt}
                     fill
-                    sizes="(min-width: 768px) 560px, 100vw"
+                    sizes="(min-width: 1024px) 370px, (min-width: 768px) 50vw, 100vw"
                     className="parallax object-cover object-top"
                   />
                 </div>

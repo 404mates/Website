@@ -15,7 +15,7 @@ export type Project = {
   kind: string;
   summary: string;
   tags: string[];
-  theme: "editorial" | "product";
+  theme: "editorial" | "product" | "portfolio";
   image: string;
   imageAlt: string;
   // Facts below come from inspecting the live site, measured November 2026.
@@ -37,7 +37,8 @@ export const projects: Project[] = [
     tags: ["Editorial design", "Service menu", "Inquiry flow"],
     theme: "editorial",
     image: "/work/leena-studio-nyc.jpg",
-    imageAlt: "Leena's Studio NYC homepage with the studio wordmark, menu and booking link",
+    imageAlt:
+      "Leena's Studio NYC homepage with the headline “More than just makeup, it's a mood.” set around an arched portrait",
     facts: [
       { label: "Stack", value: "React + Vite" },
       { label: "Hosting", value: "Vercel" },
@@ -133,6 +134,62 @@ export const projects: Project[] = [
       {
         title: "Light on the wire",
         body: "On our test load the homepage transferred 136 kB across 13 requests, answered in 226 ms and finished loading in 1.3 seconds.",
+      },
+    ],
+    measuredNote: "Measured on a single desktop load, November 2026.",
+  },
+  {
+    slug: "sameer-ahmed",
+    name: "Sameer Ahmed",
+    url: "https://www.sameerahmed16.com",
+    kind: "Personal portfolio",
+    summary:
+      "A portfolio for a software engineer who builds voice agents for cardiac care. A live pulse line, a page that recolors per project, and a playable cricket over, all in one small bundle.",
+    tags: ["Interactive portfolio", "Canvas animation", "Mini-game"],
+    theme: "portfolio",
+    image: "/work/sameer-ahmed.jpg",
+    imageAlt:
+      "Sameer Ahmed's portfolio homepage with his name in large type above a red heartbeat line",
+    facts: [
+      { label: "Stack", value: "React + Vite" },
+      { label: "Hosting", value: "Vercel" },
+      { label: "Structure", value: "1 page, 8 sections" },
+      { label: "Full load", value: "0.6 s" },
+    ],
+    brief: [
+      "Sameer is a software engineer at a remote cardiac monitoring company in Houston, and one of the four of us. A résumé lists that. It does not show what he is like to work with or how he builds.",
+      "The portfolio had to do both jobs at once: give a recruiter the facts in under a minute, and give anyone curious a reason to stay and poke at it. Every interactive piece had to come from his actual story, so nothing on the page is decoration for its own sake.",
+    ],
+    built: [
+      {
+        title: "A pulse that reads you",
+        body: "A heartbeat line runs under the hero and speeds up as you move faster, with the rate shown in beats per minute. It is a nod to the cardiac monitoring work he does every day.",
+      },
+      {
+        title: "Projects that recolor the page",
+        body: "Eight projects sit in one list. Opening one changes the color of the whole page to match it, so each project feels like its own room without leaving the page.",
+      },
+      {
+        title: "Face an over",
+        body: "A six-ball batting game you play with space, a click or a tap. He was best batsman in a national championship side, and this says so better than a bullet point.",
+      },
+      {
+        title: "The route, measured",
+        body: "Karachi, State College, New York and Houston, laid out with the distance between each stop and the current local time in every city.",
+      },
+    ],
+    engineering: [
+      {
+        title: "Four requests, 108 kB",
+        body: "The whole site, game included, arrived in four requests and 108 kB on our test load, and finished loading in 0.6 seconds.",
+      },
+      {
+        title: "Drawn, not downloaded",
+        body: "The pulse line and the cricket game are drawn on canvas in code. There are no videos or animation files to fetch, which is why the page stays this light.",
+      },
+      {
+        title: "Sound and light are opt-in",
+        body: "Sound starts off and there is a day mode one tap away, so the page behaves on a quiet train or a bright screen.",
       },
     ],
     measuredNote: "Measured on a single desktop load, November 2026.",
